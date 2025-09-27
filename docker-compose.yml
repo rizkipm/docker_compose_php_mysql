@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  php:
+    image: php:8.2-apache
+    container_name: belajar_php
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html/
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: belajar_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: db_belajar
+      MYSQL_USER: userku
+      MYSQL_PASSWORD: passku
+    ports:
+      - "3307:3306"
